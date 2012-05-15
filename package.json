@@ -1,0 +1,16 @@
+{
+    "name": "perftest",
+    "version": "0.0.1",
+    "description": "perftest",
+    "main": "index.js",
+    "private": true,
+    "dependencies": {
+        "express": "2.x.x",
+        "jade": "0.16.x",
+        "underscore": "1.2.2",
+        "nodetime": "x"
+    },
+    "devDependencies": {
+    },
+    "engine": "node >= 0.4.1"
+}
