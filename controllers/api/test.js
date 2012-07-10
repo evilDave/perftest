@@ -1,9 +1,6 @@
 var nodetime = require('nodetime'),
     _ = require("underscore");
 
-nodetime.profile({serverUrl:"http://localhost:8888", gdSync:{}});
-
-
 function registerRoutes(app){
     app.get("/api/test", function (req, res) {
         console.log("/api/test");

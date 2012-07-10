@@ -8,7 +8,7 @@
         "express": "2.x.x",
         "jade": "0.16.x",
         "underscore": "1.2.2",
-        "nodetime": "x"
+        "nodetime": "git://github.com/alphashack/nodetime.git"
     },
     "devDependencies": {
     },

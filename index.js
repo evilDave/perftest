@@ -1,7 +1,6 @@
 require('nodetime').profile({netSync:false, gdSync:{}});
 
 var express = require("express"),
-    _ = require("underscore"),
     app = express.createServer()
     api = require("./controllers/api");
 
