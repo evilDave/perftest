@@ -1,8 +1,9 @@
 var testapi = require("./api/test")
-var testapi = require("./api/sleep")
+var sleepapi = require("./api/sleep")
 
 function registerRoutes(app){
     testapi.registerRoutes(app);
+    sleepapi.registerRoutes(app);
 }
 
 module.exports = {
