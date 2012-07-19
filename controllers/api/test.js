@@ -3,8 +3,6 @@ var nodetime = require('nodetime'),
 
 function registerRoutes(app){
     app.get("/api/test", function (req, res) {
-        console.log("/api/test");
-
         req.graphdat.begin("test");
 
         res.send({
@@ -12,49 +10,39 @@ function registerRoutes(app){
             message: "test"
         });
 
-        req.graphdat.end("test");
+        console.log("/api/test");
     });
 
     app.get("/api/test/slow", function (req, res) {
-        console.log("/api/test/slow");
-
-        req.graphdat.begin("slow");
+        req.graphdat.begin("slow_part_one");
 
         setTimeout(function(){
-            console.log("/api/test/slow Done");
+            req.graphdat.end();
 
-            res.send({
-                success: true,
-                message: "test/slow"
-            });
+            req.graphdat.begin("slow_part_two");
 
-            req.graphdat.end("slow");
-        }, 10000);
+            setTimeout(function(){
+                res.send({
+                    success: true,
+                    message: "test/slow"
+                });
+
+                console.log("/api/test/slow");
+            }, 1000);
+
+        }, 5000);
 
     });
 
     app.get("/api/test/fast", function (req, res) {
-        console.log("/api/test/fast");
-
-        var time = nodetime.stats.time(true);
-
-
-        var subtime = nodetime.stats.time();
-        if(!subtime.measure()) return;
-        nodetime.stats.value('test', 'Requests per minute', 1, undefined, 'sum');
-        nodetime.stats.value('test', 'Average response time', time.ms, 'ms', 'avg');
-        nodetime.stats.sample(subtime, {'Type': 'test', blah: "blah"}, '/api/test');
-
-
-        if(!time.measure()) return;
-        nodetime.stats.value('test/fast', 'Requests per minute', 1, undefined, 'sum');
-        nodetime.stats.value('test/fast', 'Average response time', time.ms, 'ms', 'avg');
-        nodetime.stats.sample(time, {'Type': 'test/slow'}, '/api/test/fast');
+        req.graphdat.begin("fast");
 
         res.send({
             success: true,
             message: "test/fast"
         });
+
+        console.log("/api/test/fast");
     });
 }
 

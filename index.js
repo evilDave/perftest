@@ -3,10 +3,13 @@ require('nodetime').profile({
     gdSync: {
         /*logger: logger,*/
         /*debug: {
-            sync_write:false,
-            http_begin:false,
-            http_end:false
-        }*/
+            sync_write:true,
+            http_begin:true,
+            http_end:true
+        },*/
+        suppress: {
+            context_pop_automatic:true
+        }
     }
 });
 
