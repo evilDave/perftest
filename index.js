@@ -1,10 +1,10 @@
-require('nodetime').profile({netSync:false, gdSync:{}});
+require('graphdat').config({debug:true});
 
 var express = require("express"),
-    app = express.createServer()
-    api = require("./controllers/api");
+	app = express(),
+	api = require("./controllers/api");
 
-var port = 8001;
+var port = 8123;
 
 api.registerRoutes(app);
 

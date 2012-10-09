@@ -5,12 +5,12 @@
     "main": "index.js",
     "private": true,
     "dependencies": {
-        "express": "2.x.x",
-        "jade": "0.16.x",
-        "underscore": "1.2.2",
-        "nodetime": "git://github.com/alphashack/nodetime.git"
+        "express": "*",
+        "jade": "*",
+        "underscore": "*",
+        "graphdat": "git://github.com/alphashack/graphdat-sdk-node.git"
     },
     "devDependencies": {
     },
-    "engine": "node >= 0.4.1"
+    "engine": "node >= 0.8.1"
 }
