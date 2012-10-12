@@ -8,7 +8,7 @@
         "express": "*",
         "jade": "*",
         "underscore": "*",
-        "graphdat": "git://github.com/alphashack/graphdat-sdk-node.git"
+        "graphdat": "*"
     },
     "devDependencies": {
     },

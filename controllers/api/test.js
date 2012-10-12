@@ -31,7 +31,34 @@ function registerRoutes(app){
             message: "test/fast"
         });
     });
-}
+
+	app.get("/api/test/multicall", function (req, res) {
+		console.log("/api/test/multicall");
+
+		req.graphdat.begin("zero");
+		setTimeout(function(){
+			req.graphdat.end("zero");
+
+			req.graphdat.begin("one");
+			setTimeout(function(){
+				req.graphdat.end("one");
+
+				req.graphdat.begin("one");
+				setTimeout(function(){
+					req.graphdat.end("one");
+
+					res.send({
+						         success: true,
+						         message: "test/multicall"
+					         });
+
+				}, 100);
+
+			}, 100);
+
+		}, 100);
+
+	});}
 
 module.exports = {
     registerRoutes: registerRoutes
