@@ -58,7 +58,21 @@ function registerRoutes(app){
 
 		}, 100);
 
-	});}
+	});
+
+	app.get("/api/test/replacement", function (req, res) {
+		console.log("/api/test/replacement");
+
+		req.graphdat.begin("slash/slash");
+		req.graphdat.begin("colon::colon");
+
+		res.send({
+			         success: true,
+			         message: "test/replacement"
+		         });
+	});
+	
+}
 
 module.exports = {
     registerRoutes: registerRoutes
