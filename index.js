@@ -1,4 +1,4 @@
-require('graphdat').config({debug:{context_begin:true,context_end:true}});
+require('graphdat').config({debug:{context_begin:false,context_end:false,dump_payload:false}});
 
 var express = require("express"),
 	app = express(),
