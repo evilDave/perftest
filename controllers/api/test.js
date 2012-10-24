@@ -26,7 +26,9 @@ function registerRoutes(app){
     app.get("/api/test/fast", function (req, res) {
         console.log("/api/test/fast");
 
-        res.send({
+	    req.graphdat.begin("one");
+
+	    res.send({
             success: true,
             message: "test/fast"
         });
@@ -129,7 +131,7 @@ function registerRoutes(app){
 		}, 2000);
 	});
 
-	doSomethingAsync = function(cb) {
+	var doSomethingAsync = function(cb) {
 		cb.graphdat.begin("async1");
 		setTimeout(function() {
 
@@ -141,7 +143,82 @@ function registerRoutes(app){
 		}, 500);
 	}
 
+	app.get("/api/test/recursive", function (req, res) {
+		console.log("/api/test/recursive");
 
+		req.graphdat.begin("outer");
+
+		var c = 0;
+
+		recurse();
+
+		function recurse()
+		{
+			req.graphdat.begin('recurse');
+			if (++c >= 10)
+			{
+				res.send({
+					         success: true,
+					         message: "test/async"
+				         });
+				return;
+			}
+
+			recurse();
+		}
+	});
+
+
+	app.get("/api/test/deeplyrecursive", function (req, res) {
+		console.log("/api/test/deeplyrecursive");
+
+		req.graphdat.begin("outer");
+
+		var c = 0;
+
+		A();
+
+		function A()
+		{
+			req.graphdat.begin('A');
+
+			B();
+		}
+
+		function B()
+		{
+			req.graphdat.begin('B');
+
+			C();
+		}
+
+		function C()
+		{
+			req.graphdat.begin('C');
+
+			if (++c >= 3)
+			{
+				res.send({
+					         success: true,
+					         message: "test/deeplyrecursive"
+				         });
+				return;
+			}
+
+			A();
+		}
+	});
+
+	app.get("/api/test/params/:id", function (req, res) {
+		console.log("/api/test/params");
+
+		req.graphdat.begin("one");
+
+		res.send({
+			         success: true,
+			         message: "test/params"
+		         });
+	});
 }
 
 module.exports = {
